@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>プロフィール - era</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white sm:bg-gray-50 dark:bg-black text-gray-800">
+
+<!-- ヘッダー -->
+<header class="bg-white dark:bg-gray-800 border-b border-gray-200 sticky top-0 z-50">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-2">
+        <!-- 左：ハンバーガーメニュー -->
+        <button id="menuToggle" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">
+          <svg class="w-7 h-7 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+        <!-- eraアイコン -->
+        <img src="Eraicon.png" alt="eraアイコン" class="w-14 h-14 rounded-full">
+      </div>
+
+      <!-- 中央検索バー -->
+      <div class="hidden md:block w-1/3">
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
+          </span>
+          <input type="text" placeholder="検索..." class="w-full pl-10 pr-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
+
+      <!-- 右プロフィールアイコン -->
+      <div class="relative group cursor-pointer">
+        <img id="headerProfileImage" src="ChatGPT Image 2025年8月15日 11_27_14.png" alt="プロフィール" class="w-12 h-12 rounded-full border-2 border-gray-300">
+        <div class="absolute inset-0 rounded-full bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-xs">
+          変更
+        </div>
+        <input type="file" id="headerProfileInput" accept="image/*" class="hidden">
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container mx-auto px-0 sm:px-4 mt-6 pb-24">
+  <div class="grid grid-cols-12 gap-8">
+
+    <!-- 左サイドバー -->
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform -translate-x-full transition-transform duration-300 ease-in-out z-40 overflow-y-auto">
+      <div class="p-4 space-y-4">
+        <!-- ナビゲーション -->
+        <nav class="space-y-2">
+          <a href="#" class="flex items-center space-x-3 px-3 py-2 text-blue-600 font-bold bg-blue-50 dark:bg-blue-900/50 rounded-lg">
+            <i data-lucide="home" class="w-6 h-6"></i>
+            <span>ホーム</span>
+          </a>
+          <a href="#" class="flex items-center space-x-3 px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+            <i data-lucide="users" class="w-6 h-6"></i>
+            <span>検索</span>
+          </a>
+          <a href="#" class="flex items-center space-x-3 px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+            <i data-lucide="gem" class="w-6 h-6"></i>
+            <span>通知</span>
+          </a>
+          <a href="#" class="flex items-center space-x-3 px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+            <i data-lucide="book-open-text" class="w-6 h-6"></i>
+            <span>メッセージ</span>
+          </a>
+          <a href="#" class="flex items-center space-x-3 px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+            <i data-lucide="swords" class="w-6 h-6"></i>
+            <span>お気に入り</span>
+          </a>
+          <a href="#" class="flex items-center space-x-3 px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+            <i data-lucide="user" class="w-6 h-6"></i>
+            <span>保存</span>
+          </a>
+          <a href="#" class="flex items-center space-x-3 px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+            <i data-lucide="ai" class="w-6 h-6"></i>
+            <span>AI回想</span>
+          </a>
+          <a href="#" class="flex items-center space-x-3 px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+            <i data-lucide="users" class="w-6 h-6"></i>
+            <span>他の機能</span>
+          </a>
+        </nav>
+
+        <!-- 新規投稿 -->
+        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200">
+          <nav>
+            <a href="#" class="flex items-center space-x-3 px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+              <i data-lucide="more" class="w-6 h-6"></i>
+              <span>新規投稿</span>
+            </a>
+          </nav>
+        </div>
+
+        <!-- 年代選択 -->
+        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200">
+          <nav>
+            <a href="#" class="flex items-center space-x-3 px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+              <i data-lucide="more" class="w-6 h-6"></i>
+              <span>年代（My世代）</span>
+            </a>
+            <a href="#" class="flex items-center space-x-3 px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+              <i data-lucide="more" class="w-6 h-6"></i>
+              <span>年代（All世代）</span>
+            </a>
+          </nav>
+        </div>
+
+        <!-- 設定 -->
+        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200">
+          <nav>
+            <a href="#" class="flex items-center space-x-3 px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+              <i data-lucide="more" class="w-6 h-6"></i>
+              <span>設定とヘルプ</span>
+            </a>
+          </nav>
+        </div>
+
+        <!-- アカウント切替 -->
+        <div class="rounded-card bg-panel/70 shadow-soft p-3 flex items-center gap-3">
+          <img src="atGPT Image 2025年8月15日 11_27_14.png" class="w-10 h-10 rounded-full object-cover" alt="">
+          <div class="leading-tight">
+            <div class="font-semibold">you_dev</div>
+            <div class="text-sub text-xs">@you</div>
+          </div>
+          <button class="ml-auto px-3 py-1.5 rounded-lg border border-white/10 text-sub hover:bg-white/5 text-xs">切替</button>
+        </div>
+      </div>
+    </aside>
+  <!-- メインコンテンツと右サイドバーを包むラッパー -->
+  <div id="contentWrapper" class="col-span-12 lg:col-span-12 lg:ml-0 transition-all duration-300">
+
+    <!-- メインコンテンツ -->
+    <div class="lg:flex lg:space-x-8">
+    <div id="mainContent" class="flex-1">
+      <!-- ヘッダー画像 -->
+<div class="relative bg-gray-300 dark:bg-gray-800 rounded-t-lg overflow-hidden h-40 mb-16 group" id="headerImageWrapper">
+  <img id="headerImage" src="https://via.placeholder.com/600x160" class="w-full h-full object-cover">
+  <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-sm">
+    クリックして変更
+  </div>
+  <input type="file" id="headerImageInput" accept="image/*" class="hidden">
+</div>
+
+<!-- プロフィール画像 -->
+<div class="relative flex items-start space-x-4 mb-6">
+  <div class="relative group cursor-pointer" id="profileImageWrapper">
+    <img id="profileImage" src="https://via.placeholder.com/100" class="w-32 h-32 rounded-full border-4 border-white -mt-16">
+    <div class="absolute inset-0 rounded-full bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-xs">
+      変更
+    </div>
+    <input type="file" id="profileImageInput" accept="image/*" class="hidden">
+  </div>
+  <div>
+    <h1 class="text-xl font-bold">平井ノア</h1>
+    <p class="text-gray-500">@Noahdesu</p>
+    <p class="mt-2 text-sm">平井のあです。こんにちは</p>
+    <div class="flex space-x-4 mt-3 text-sm">
+      <span><span class="font-bold">1</span> フォロー中</span>
+      <span><span class="font-bold">1,234,567,890</span> フォロワー</span>
+    </div>
+  </div>
+</div>
+
+      <!-- タブ -->
+      <div class="flex border-b border-gray-300 mb-4">
+        <button class="flex-1 text-center py-3 font-bold border-b-2 border-blue-500">つぶやき</button>
+        <button class="flex-1 text-center py-3 text-gray-500 hover:bg-gray-100">返信</button>
+        <button class="flex-1 text-center py-3 text-gray-500 hover:bg-gray-100">記事</button>
+        <button class="flex-1 text-center py-3 text-gray-500 hover:bg-gray-100">いいね</button>
+      </div>
+
+      <!-- 投稿リスト -->
+      <div class="divide-y divide-gray-300">
+        <div class="flex p-4 space-x-3">
+          <img src="https://via.placeholder.com/48" alt="icon" class="w-8 h-8 rounded-full post-icon">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-bold">平井ノア</span>
+              <span class="text-gray-500">@Noahdesu · 1分前</span>
+            </div>
+            <p>新時代のSNSを作る。</p>
+          </div>
+        </div>
+        <div class="flex p-4 space-x-3">
+          <img src="https://via.placeholder.com/48" alt="icon" class="w-8 h-8 rounded-full post-icon">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-bold">平井ノア</span>
+              <span class="text-gray-500">@Noahdesu · 2時間</span>
+            </div>
+            <p>がんばろう</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   <!-- 右サイドバー -->
+<aside id="rightSidebar" class="hidden lg:block w-72">
+  <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 sticky top-24 space-y-6">
+
+    <!-- トレンドセクション（そのまま） -->
+    <div class="space-y-6">
+      <!-- My年代トレンド -->
+      <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600">
+        <h2 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-3 border-b border-gray-300 dark:border-gray-600 pb-1">My年代トレンド</h2>
+        <ul class="space-y-2">
+          <li class="flex items-center justify-between">
+            <span class="text-gray-700 dark:text-gray-300">#夏フェス</span>
+            <span class="text-sm text-gray-500">2.3K件</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-gray-700 dark:text-gray-300">#推し活</span>
+            <span class="text-sm text-gray-500">1.8K件</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-gray-700 dark:text-gray-300">#新作ゲーム</span>
+            <span class="text-sm text-gray-500">1.2K件</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ALL年代トレンド -->
+      <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600">
+        <h2 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-3 border-b border-gray-300 dark:border-gray-600 pb-1">ALL年代トレンド</h2>
+        <ul class="space-y-2">
+          <li class="flex items-center justify-between">
+            <span class="text-gray-700 dark:text-gray-300">#台風情報</span>
+            <span class="text-sm text-gray-500">5.4K件</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-gray-700 dark:text-gray-300">#スポーツニュース</span>
+            <span class="text-sm text-gray-500">3.9K件</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-gray-700 dark:text-gray-300">#映画公開</span>
+            <span class="text-sm text-gray-500">3.2K件</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ニュースセクション（背景白色に変更） -->
+    <div class="space-y-6 mt-8">
+      <!-- My年代ニュース -->
+      <div class="p-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-700 dark:border-gray-200">
+        <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-3 border-b border-gray-300 dark:border-gray-600 pb-1">My年代ニュース</h2>
+        <ul class="space-y-2 text-sm text-gray-800 dark:text-white">
+          <li><a href="#" class="block hover:underline text-gray-800 dark:text-white">📰 新作ゲームランキングTOP10</a></li>
+          <li><a href="#" class="block hover:underline text-gray-800 dark:text-white">🎵 夏フェス2025出演アーティスト発表</a></li>
+          <li><a href="#" class="block hover:underline text-gray-800 dark:text-white">📸 推し活最新グッズ情報</a></li>
+        </ul>
+      </div>
+
+      <!-- ALL年代ニュース -->
+      <div class="p-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-700 dark:border-gray-200">
+        <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-3 border-b border-gray-300 dark:border-gray-600 pb-1">ALL年代ニュース</h2>
+        <ul class="space-y-2 text-sm text-gray-800 dark:text-white">
+          <li><a href="#" class="block hover:underline text-gray-800 dark:text-white">🌏 国際会議で環境問題が主要議題に</a></li>
+          <li><a href="#" class="block hover:underline text-gray-800 dark:text-white">🎯 人気アニメ最新作が歴代最高興行収入を更新</a></li>
+          <li><a href="#" class="block hover:underline text-gray-800 dark:text-white">⚽ 大型スポーツイベント速報</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</aside>
+
+</main>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const sidebar = document.getElementById("sidebar");
+const contentWrapper = document.getElementById("contentWrapper");
+
+menuToggle.addEventListener("click", () => {
+  sidebar.classList.toggle("-translate-x-full");
+
+  // 左サイドバー開閉に合わせてコンテンツの余白を調整
+  if (sidebar.classList.contains("-translate-x-full")) {
+    // サイドバー閉じた状態
+    contentWrapper.classList.remove("lg:ml-64");
+  } else {
+    // サイドバー開いた状態
+    contentWrapper.classList.add("lg:ml-64");
+  }
+});
+ // ヘッダー画像変更
+  const headerInput = document.getElementById('headerImageInput');
+  const headerImg = document.getElementById('headerImage');
+  const headerWrapper = document.getElementById('headerImageWrapper');
+
+  headerWrapper.addEventListener('click', () => {
+    headerInput.click();
+  });
+
+  headerInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      headerImg.src = URL.createObjectURL(file);
+    }
+  });
+
+  // プロフィール画像変更
+  const profileInput = document.getElementById('profileImageInput');
+  const profileImg = document.getElementById('profileImage');
+  const profileWrapper = document.getElementById('profileImageWrapper');
+  const postIcons = document.querySelectorAll('.post-icon'); // 投稿の横アイコン
+
+  profileWrapper.addEventListener('click', () => {
+    profileInput.click();
+  });
+
+  profileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const newSrc = URL.createObjectURL(file);
+      profileImg.src = newSrc;
+
+      // 投稿アイコンも同じ画像に変更
+      postIcons.forEach(icon => {
+        icon.src = newSrc;
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
